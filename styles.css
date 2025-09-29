@@ -1,33 +1,36 @@
 /* --- CSS Variables for Theming --- */
 :root {
-    --primary-color: #1E415A;
-    --accent-color: #b700ff;
-    --secondary-color: #5BC0EB;
-    --highlight-shadow: rgba(0, 212, 255, 0.4);
-    --bg-color: #F7F7F7;
+    --primary-color: #1E90FF;        
+    --accent-color: #00b9b9e0;        
+    --secondary-color: #4bb4a3;   
+    --highlight-shadow: rgba(30, 144, 255, 0.4);
+    --bg-color: #F4F7FB;            
     --card-color: #FFFFFF;
-    --text-color: #333333;
-    --border-color: #DDDDDD;
-    --input-bg: #EAEAEA;
+    --text-color: #2C3E50;         
+    --border-color: #E0E6ED;
+    --input-bg: #F0F3F7;
     --transition-speed: 0.3s;
-    --anim-gear-color: #5BC0EB;
-    --anim-line-color: #1E415A;
-    --anim-arm-color: #5BC0EB;
-    --anim-hand-color: #00D4FF;
+    --anim-gear-color: #1E90FF;
+    --anim-line-color: #003380ce;
+    --anim-arm-color: #00C9A7;
+    --anim-hand-color: #FFD166;    
 }
 
 body.dark-mode {
-    --bg-color: #0D1B2A;
-    --card-color: #1A3042;
-    --text-color: #E0F7FA;
-    --border-color: #335577;
-    --input-bg: #142535;
-    --primary-color: #00BFFF;
-    --anim-gear-color: #00BFFF;
-    --anim-line-color: #E0F7FA;
-    --anim-arm-color: #00BFFF;
-    --anim-hand-color: #5BC0EB;
+    --bg-color: #0D1117;            
+    --card-color: #161B22;
+    --text-color: #E6EDF3;
+    --border-color: #30363D;
+    --input-bg: #21262D;
+    --primary-color: #58A6FF;       
+    --accent-color: #8cd1da;        
+    --secondary-color: #2ECC71;     
+    --anim-gear-color: #58A6FF;
+    --anim-line-color: #56d9eb;
+    --anim-arm-color: #2ECC71;
+    --anim-hand-color: #FFD166;
 }
+
 
 * {
     margin: 0;
@@ -45,6 +48,60 @@ body {
     display: flex;
     flex-direction: column;
 }
+.dev-banner {
+  background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+  color: #fff;
+  text-align: center;
+  font-weight: 600;
+  padding: 12px 20px;
+  font-size: 1rem;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  max-width: 90%;
+  border-radius: 10px;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  animation: slideDown 0.6s ease-out;
+}
+
+.dev-banner span {
+  flex: 1;
+  text-align: center;
+}
+
+.dev-banner button {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.dev-banner button:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -30px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
 
 .container {
     max-width: 1200px;
@@ -1112,6 +1169,48 @@ body.dark-mode footer {
     max-width: 600px;
     margin: 0 auto;
 }
+#joinForm button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(90deg, #007bff, #00c6ff);
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+form textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #2a2f3a;
+  border-radius: 6px;
+  background: #111827;
+  color: #e5e7eb;
+  font-size: 14px;
+  resize: vertical;
+  min-height: 80px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+form textarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 6px rgba(59, 130, 246, 0.5);
+  outline: none;
+}
+
+
+#joinForm button:hover {
+  background: linear-gradient(90deg, #0056b3, #0099cc);
+  transform: translateY(-2px);
+}
+
+#joinForm button:active {
+  transform: translateY(0);
+}
+
 
 .form-row {
     display: flex;
@@ -1123,6 +1222,21 @@ body.dark-mode footer {
     flex: 1;
     margin-bottom: 0;
 }
+.payment-info {
+  background: rgba(0, 123, 255, 0.05);
+  border-left: 4px solid var(--accent-color);
+  padding: 12px 15px;
+  margin: 15px 0;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: var(--text-color);
+}
+.payment-info h3 {
+  margin: 0 0 8px;
+  color: var(--accent-color);
+}
+
+
 
 /* Responsive Design */
 @media (max-width: 900px) {
