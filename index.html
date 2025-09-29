@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIU Robotics Club - Official Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container">
+                    <div class="logo" onclick="showView('home-view')">
+                        <img src="diurc_logo.png" 
+                            
+                             alt="DIU Robotics Club Logo" />
+                        <div class="logo-text">
+                        
+                               <h1><b>DIU Robotics Club</b></h1>
+        
+                            <div class="subtitle">Innovation & Automation</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <nav class="main-nav">
+                    <a href="#" class="nav-link active" data-view="home-view">Home</a>
+                    <a href="#" class="nav-link" data-view="team-view">Team</a>
+                    <a href="#" class="nav-link" data-view="members-view">Members</a>
+                    <a href="#" class="nav-link" data-view="projects-view">Projects</a>
+                    <a href="#" class="nav-link" data-view="achievements-view">Achievements</a>
+                    <a href="#" class="nav-link" data-view="events-view">Events</a>
+                    <a href="#" class="nav-link" data-view="certificate-view">Verify Certificate</a>
+                    <a href="#" class="nav-link" data-view="join-view">Join Us</a>
+                </nav>
+
+                <!-- Theme Toggle -->
+                <div class="theme-toggle-container">
+                    <i class="fas fa-sun"></i>
+                    <label class="switch">
+                        <input type="checkbox" id="themeToggle">
+                        <span class="slider"></span>
+                    </label>
+                    <i class="fas fa-moon"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Animation Container -->
+        <div class="animation-container">
+            <div class="gear gear-large">
+                <div class="gear-teeth"></div>
+            </div>
+            <div class="gear gear-medium">
+                <div class="gear-teeth"></div>
+            </div>
+            <div class="gear gear-small">
+                <div class="gear-teeth"></div>
+            </div>
+            <div class="robot-arm">
+                <div class="robot-hand"></div>
+            </div>
+            <div class="circuit"></div>
+            <div class="floating-particle p1"></div>
+            <div class="floating-particle p2"></div>
+            <div class="floating-particle p3"></div>
+            <div class="floating-particle p4"></div>
+            <div class="floating-particle p5"></div>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- ============================================== -->
+        <!-- 1. HOME VIEW (Default) -->
+        <!-- ============================================== -->
+        <div id="home-view" class="view">
+            <section class="slideshow-section">
+                <div id="slideshow" class="slideshow-container">
+                    <!-- Slides will be inserted here by JavaScript -->
+                </div>
+            </section>
+
+            <section class="content-section" id="intro">
+                <div class="content-card">
+                    <h2>Welcome to the DIU Robotics Club</h2>
+                    <p style="text-align: justify;">The DIU Robotics Club is a vibrant and dynamic student organization at Daffodil International University, dedicated to exploring the fascinating world of robotics, electronics, and intelligent systems. As one of the most active and innovative clubs on campus, we create opportunities for students from all departments to learn, build, and showcase their skills in robotics and automation. Through workshops, competitions, and collaborative projects, the club serves as a platform for transforming creative ideas into real-world solutions, while fostering teamwork, problem-solving, and leadership among its members.
+
+</p>
+                </div>
+            </section>
+<section class="content-section" id="intro">
+                <div class="content-card">
+                    <h2>Upcoming Event</h2>
+                    <p style="text-align: justify;">The DIU Robotics Club is a vibrant and dynamic student organization at Daffodil International University, dedicated to exploring the fascinating world of robotics, electronics, and intelligent systems. As one of the most active and innovative clubs on campus, we create opportunities for students from all departments to learn, build, and showcase their skills in robotics and automation. Through workshops, competitions, and collaborative projects, the club serves as a platform for transforming creative ideas into real-world solutions, while fostering teamwork, problem-solving, and leadership among its members.
+
+</p>
+                </div>
+            </section>
+            <section class="content-section mission-vision-section" id="mission">
+                <div class="mission-vision-grid">
+                    <div class="content-card">
+                        <h3>Our Mission</h3>
+                        <p style="text-align: justify;">Our mission is to inspire and empower students by providing hands-on experiences in robotics and related technologies. We aim to bridge the gap between classroom knowledge and practical application, encourage innovation, and promote interdisciplinary collaboration. By nurturing talent and curiosity, the DIU Robotics Club seeks to prepare the next generation of engineers, innovators, and leaders who will contribute to the advancement of technology and society.</p>
+                    </div>
+                    <div class="content-card">
+                        <h3>Our Vision</h3>
+                        <p style="text-align: justify;">We envision a community where every student has the opportunity to explore and excel in robotics and emerging technologies. By becoming a hub of creativity, innovation, and technical excellence, the DIU Robotics Club aspires to place Daffodil International University on the global map of robotics and research. Our long-term vision is to inspire sustainable technological development and create future leaders capable of solving real-world challenges through robotics and automation.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+       <!-- ============================================== -->
+<!-- 2. TEAM VIEW (15 Members with details) -->
+<!-- ============================================== -->
+<div id="team-view" class="view hidden">
+    <div class="team-container">
+        <h2>Our Core Team - Leadership Panel</h2>
+        <p style="text-align: center; margin-bottom: 30px;">Meet the dedicated individuals who lead the club's various functional and technical wings. Click a card for details.</p>
+        
+        <!-- President Card will be inserted here -->
+        <div id="presidentCard" class="member-card president-card" style="display: none;"></div>
+        
+        <!-- Other team members grid -->
+        <div id="teamList" class="team-grid">
+            <!-- Other team member cards will be dynamically injected here -->
+        </div>
+    </div>
+</div>
+        <!-- ============================================== -->
+        <!-- 3. MEMBERS VIEW (Directory - Full Member Directory) -->
+        <!-- ============================================== -->
+        <div id="members-view" class="view hidden">
+            <!-- Search Section -->
+            <section class="search-section">
+                <div class="container">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Search by name, department, or email...">
+                        <button id="searchButton"><i class="fas fa-search"></i></button>
+                    </div>
+                    <div class="filters">
+                        <button class="filter-btn active" data-filter="all">All Members</button>
+                        <button class="filter-btn" data-filter="EEE">EEE</button>
+                        <button class="filter-btn" data-filter="CSE">CSE</button>
+                        <button class="filter-btn" data-filter="SWE">SWE</button>
+                        <button class="filter-btn" data-filter="OTHERS">Others</button>
+                    </div>
+                    <!-- Recruitment Notice -->
+                    <div class="recruitment-notice">
+                        ⚠️ **Notice:** Member data recruited through StudentHub is not included in this directory.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Members Section -->
+           <section class="members-section">
+        <div class="container">
+            <h2 class="section-title">Our Members</h2>
+            <div id="dataInfo" class="data-info" style="display: none;"></div>
+            <div id="loadingState" class="loading">
+                <i class="fas fa-robot"></i>
+                <p>Loading member data from Google Sheets...</p>
+            </div>
+            <div id="errorState" class="error" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Error loading data. Please try again later.</p>
+            </div>
+            <div class="members-grid" id="membersGrid">
+                <!-- Member cards will be dynamically generated here -->
+            </div>
+            
+            <!-- Pagination -->
+            <div class="pagination" id="pagination" style="display: none;">
+                <button class="page-btn" id="prevPage"><i class="fas fa-chevron-left"></i> Previous</button>
+                <div class="page-numbers" id="pageNumbers"></div>
+                <button class="page-btn" id="nextPage">Next <i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+        </div>
+
+        <!-- ============================================== -->
+        <!-- 4. PROJECTS VIEW -->
+        <!-- ============================================== -->
+        <div id="projects-view" class="view hidden">
+            <h2>Our Key Projects</h2>
+            <p style="text-align: center;">Highlighting our latest innovations in automation, competition, and research.</p>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h4><i class="fas fa-robot"></i> Rescue Rover v3.0</h4>
+                    <p>A semi-autonomous robot designed for search and rescue operations in simulated disaster zones. Features real-time environmental data collection and obstacle avoidance.</p>
+                    <p style="font-size: 0.85rem; color: var(--accent-color);">Status: Under Development | Team: Alpha-Tech</p>
+                </div>
+                <div class="project-card">
+                    <h4><i class="fas fa-brain"></i> AI-Powered Drone Navigation</h4>
+                    <p>Integration of computer vision and machine learning models for precision navigation and payload delivery using a custom-built quadcopter platform.</p>
+                    <p style="font-size: 0.85rem; color: var(--accent-color);">Status: Completed | Team: Visionaries</p>
+                </div>
+                <div class="project-card">
+                    <h4><i class="fas fa-microchip"></i> Smart Home Automation System</h4>
+                    <p>A prototype system using IoT and custom microcontrollers to manage lighting, climate, and security within a model home environment.</p>
+                    <p style="font-size: 0.85rem; color: var(--accent-color);">Status: Completed | Team: Electro-Core</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- 5. ACHIEVEMENTS VIEW -->
+        <!-- ============================================== -->
+        <div id="achievements-view" class="view hidden">
+            <h2>Club Achievements & Recognition</h2>
+            <p style="text-align: center;">A history of our success in local and international competitions.</p>
+            <div class="content-card">
+                <h3>2023 - A Year of Triumphs</h3>
+                <ul>
+                    <li>**National Robotics Challenge:** 1st Place in Line Following and 3rd Place in Soccer Robot categories (Dhaka, 2023).</li>
+                    <li>**IEEE Xtreme Programming Contest:** Top 10 finish globally (Virtual, 2023).</li>
+                    <li>**Best Student Club Award:** Recognized by the DIU Student Affairs Office for the 3rd consecutive year.</li>
+                </ul>
+                <h3>2022 Highlights</h3>
+                <ul>
+                    <li>**International Robo-Fest:** Finalists in the Drone Race category (Nepal, 2022).</li>
+                    <li>**Innovation Expo:** Two projects selected for national funding support.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- ============================================== -->
+        <!-- 6. EVENTS VIEW -->
+        <!-- ============================================== -->
+        <div id="events-view" class="view hidden">
+            <h2>Upcoming Events & Workshops</h2>
+            <p style="text-align: center;">Join us for our next workshops, competitions, and general meetings!</p>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h4><i class="fas fa-calendar-alt"></i> Microcontroller Programming Workshop</h4>
+                    <p>An intensive 3-day workshop focusing on Arduino and ESP32 programming for beginners and intermediate users. Hands-on projects included.</p>
+                    <p style="font-size: 0.85rem; color: #E74C3C;">Date: October 15-17, 2024 | Location: Lab 404</p>
+                </div>
+                <div class="project-card">
+                    <h4><i class="fas fa-trophy"></i> DIU Intra-Robotics League</h4>
+                    <p>Our annual internal competition featuring sumo bots, maze solving, and creative robotics challenges. Registration is mandatory.</p>
+                    <p style="font-size: 0.85rem; color: #E74C3C;">Date: November 10, 2024 | Location: Auditorium</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- 7. CERTIFICATE VERIFICATION VIEW -->
+        <!-- ============================================== -->
+        <div id="certificate-view" class="view hidden">
+            <div class="content-card">
+                <h2>Certificate Verification</h2>
+                <p style="text-align: center;">Verify the authenticity of DIU Robotics Club certificates</p>
+                
+                <div class="verification-form">
+                    <div class="form-group">
+                        <label for="certificateId">Certificate ID</label>
+                        <input type="text" id="certificateId" placeholder="Enter certificate ID (e.g., DIURC2024001)">
+                    </div>
+                    <div class="form-group">
+                        <label for="studentName">Student Name</label>
+                        <input type="text" id="studentName" placeholder="Enter full name as on certificate">
+                    </div>
+                    <button class="submit-btn" id="verifyCertificate">Verify Certificate</button>
+                </div>
+                
+                <div id="verificationResult" style="margin-top: 30px; display: none;">
+                    <!-- Verification result will be displayed here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- 8. JOIN US VIEW -->
+        <!-- ============================================== -->
+        <div id="join-view" class="view hidden">
+            <div class="content-card">
+                <h2>Join DIU Robotics Club</h2>
+                <p style="text-align: center;">Fill out the form below to apply for membership in the DIU Robotics Club</p>
+                
+                <div class="join-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" placeholder="Enter your first name">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" placeholder="Enter your last name">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="studentId">Student ID</label>
+                        <input type="text" id="studentId" placeholder="Enter your student ID">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="department">Department</label>
+                        <input type="text" id="department" placeholder="Enter your department">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email address">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="Enter your phone number">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="interest">Area of Interest</label>
+                        <input type="text" id="interest" placeholder="e.g., Robotics, AI, IoT, etc.">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="experience">Previous Experience (if any)</label>
+                        <input type="text" id="experience" placeholder="Briefly describe your experience">
+                    </div>
+                    
+                    <button class="submit-btn" id="submitApplication">Submit Application</button>
+                </div>
+                
+                <div id="applicationResult" style="margin-top: 30px; display: none;">
+                    <!-- Application result will be displayed here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="diurc_logo_rec.png" 
+                         onerror="this.onerror=null;this.src='https://placehold.co/180x60/1E415A/00D4FF?text=DIU+Robotics'" 
+                         alt="DIU Robotics Club Logo" style="height: 60px; width: 180px;"/>
+                    <p>DIU Robotics Club is a platform for students interested in robotics and automation to learn, innovate and collaborate.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#" data-view="home-view">Home</a></li>
+                        <li><a href="#" data-view="team-view">About Us</a></li>
+                        <li><a href="#" data-view="projects-view">Projects</a></li>
+                        <li><a href="#" data-view="events-view">Events</a></li>
+                        <li><a href="#" data-view="certificate-view">Verify Certificate</a></li>
+                        <li><a href="#" data-view="join-view">Join Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Daffodil International University</li>
+                        <li><i class="fas fa-phone"></i> +880 1839253317</li>
+                        <li><i class="fas fa-envelope"></i> diurc@diu.edu.bd</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 DIU Robotics Club. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Member Detail Modal -->
+    <div id="memberDetailModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeMemberDetail()">&times;</span>
+            <div style="text-align: center;">
+                <img id="modalMemberImage" src="" alt="Profile Image" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; border: 4px solid var(--accent-color);">
+                <h2 id="modalMemberName"></h2>
+            </div>
+            <div class="modal-details">
+                <p><strong>ID:</strong> <span id="modalMemberID"></span></p>
+                <p><strong>Role:</strong> <span id="modalMemberRole"></span></p>
+                <p><strong>Department:</strong> <span id="modalMemberDept"></span></p>
+                <p><strong>Contact:</strong> <span id="modalMemberContact"></span></p>
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
