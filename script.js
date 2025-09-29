@@ -1,5 +1,6 @@
-// Google Sheets CSV URL
-const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTAfWL7HN5tJ8l0i-vsQNctM5Jv2yJNM7kUvRwWyISUApNBFpDNeIlavto0MljoVw/pub?output=csv";
+// Google Sheets CSV URLs
+const MEMBER_SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTAfWL7HN5tJ8l0i-vsQNctM5Jv2yJNM7kUvRwWyISUApNBFpDNeIlavto0MljoVw/pub?output=csv";
+const CERTIFICATE_SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSgMTRcOrte06XqsvulaJA8PohkTl3RB5yYXoevm5BQIVU-ubnXz5uLCaRN7p7deHHX9A0xPbFHT359/pub?output=csv";
 
 // Pagination settings
 const MEMBERS_PER_PAGE = 9;
@@ -28,11 +29,11 @@ async function fetchMemberData() {
         pagination.style.display = 'none';
         membersGrid.innerHTML = '';
         
-        console.log('Fetching data from:', SHEET_URL);
+        console.log('Fetching data from:', MEMBER_SHEET_URL);
         
         // Fetch data from Google Sheets CSV with cache busting
         const timestamp = new Date().getTime();
-        const response = await fetch(`${SHEET_URL}&t=${timestamp}`);
+        const response = await fetch(`${MEMBER_SHEET_URL}&t=${timestamp}`);
         
         if (!response.ok) {
             throw new Error(`Failed to fetch data: ${response.status} ${response.statusText}`);
@@ -386,7 +387,6 @@ function filterMembers() {
 }
 
 // --- Team Data and Modal Functions ---
-
 const MOCK_TEAM_MEMBERS = [
   { id: '221-33-1531', name: 'Jabed Shariar', dept: 'EEE', role: 'Acting President', email: 'shariar33-1531@diu.edu.bd', img: 'js.jpg' },
   { id: '232-35-179', name: 'Al Hasib Arafat', dept: 'SWE', role: 'Member', email: 'arafat2305341179@diu.edu.bd', img: 'aa.jpg' },
@@ -404,7 +404,6 @@ const MOCK_TEAM_MEMBERS = [
   { id: '0242410005341013', name: 'Asad Al Adil Sayed', dept: 'SWE', role: 'Member', email: 'adil241-35-013@diu.edu.bd', img: 'as.jpg' },
   { id: '232-35-558', name: 'Roktim Saha', dept: 'SWE', role: 'Member', email: 'saha2305341558@diu.edu.bd', img: 'rs.jpg' }
 ];
-
 
 function renderTeamMembers() {
     const presidentCard = document.getElementById('presidentCard');
@@ -554,22 +553,21 @@ function setupCertificateVerification() {
     const verifyBtn = document.getElementById('verifyCertificate');
     const resultDiv = document.getElementById('verificationResult');
     
-    verifyBtn.addEventListener('click', function() {
-        const certificateId = document.getElementById('certificateId').value;
-        const studentName = document.getElementById('studentName').value;
+    verifyBtn.addEventListener('click', async function() {
+        const certificateId = document.getElementById('certificateId').value.trim();
         
-        if (!certificateId || !studentName) {
+        if (!certificateId) {
             resultDiv.innerHTML = `
                 <div class="error">
                     <i class="fas fa-exclamation-circle"></i>
-                    <p>Please enter both Certificate ID and Student Name.</p>
+                    <p>Please enter a Certificate ID.</p>
                 </div>
             `;
             resultDiv.style.display = 'block';
             return;
         }
         
-        // Simulate verification process
+        // Show loading state
         resultDiv.innerHTML = `
             <div class="loading">
                 <i class="fas fa-spinner"></i>
@@ -578,20 +576,41 @@ function setupCertificateVerification() {
         `;
         resultDiv.style.display = 'block';
         
-        setTimeout(() => {
-            // Simulate verification result (in a real app, this would come from a server)
-            const isValid = Math.random() > 0.5; // Random result for demo
+        try {
+            // Fetch certificate data from Google Sheets
+            const timestamp = new Date().getTime();
+            const response = await fetch(`${CERTIFICATE_SHEET_URL}&t=${timestamp}`);
             
-            if (isValid) {
+            if (!response.ok) {
+                throw new Error(`Failed to fetch certificate data: ${response.status} ${response.statusText}`);
+            }
+            
+            const csvText = await response.text();
+            
+            if (!csvText || csvText.trim().length === 0) {
+                throw new Error('Certificate CSV file is empty');
+            }
+            
+            // Parse certificate CSV data
+            const certificates = parseCertificateCSV(csvText);
+            console.log('Parsed certificates:', certificates);
+            
+            // Find the certificate by ID
+            const certificate = certificates.find(cert => 
+                cert.id && cert.id.toString().toLowerCase() === certificateId.toLowerCase()
+            );
+            
+            if (certificate) {
                 resultDiv.innerHTML = `
                     <div style="text-align: center; color: var(--accent-color);">
                         <i class="fas fa-check-circle" style="font-size: 3rem; margin-bottom: 15px;"></i>
                         <h3>Certificate Verified Successfully!</h3>
-                        <p><strong>Certificate ID:</strong> ${certificateId}</p>
-                        <p><strong>Student Name:</strong> ${studentName}</p>
-                        <p><strong>Issue Date:</strong> October 15, 2023</p>
-                        <p><strong>Certificate Type:</strong> Workshop Completion</p>
-                        <p style="margin-top: 15px;">This certificate has been verified and is authentic.</p>
+                        <p style="font-size: 1.2rem; margin: 20px 0; font-weight: 600; line-height: 1.5;">
+                            "${certificate.name}" successfully completed the workshop named "${certificate.workshop}" organized by DIU Robotics Club
+                        </p>
+                        <p><strong>Certificate ID:</strong> ${certificate.id}</p>
+                        ${certificate.date ? `<p><strong>Issue Date:</strong> ${certificate.date}</p>` : ''}
+                        <p style="margin-top: 15px; color: var(--text-color);">This certificate has been verified and is authentic.</p>
                     </div>
                 `;
             } else {
@@ -599,13 +618,61 @@ function setupCertificateVerification() {
                     <div class="error">
                         <i class="fas fa-times-circle"></i>
                         <h3>Certificate Not Found</h3>
-                        <p>The certificate with ID "${certificateId}" for student "${studentName}" could not be verified.</p>
-                        <p>Please check the details and try again, or contact the DIU Robotics Club for assistance.</p>
+                        <p>The certificate with ID "${certificateId}" could not be found in our records.</p>
+                        <p>Please check the Certificate ID and try again, or contact the DIU Robotics Club for assistance.</p>
                     </div>
                 `;
             }
-        }, 2000);
+        } catch (error) {
+            console.error('Error verifying certificate:', error);
+            resultDiv.innerHTML = `
+                <div class="error">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Verification Error</h3>
+                    <p>There was an error verifying the certificate. Please try again later.</p>
+                    <p><small>Error: ${error.message}</small></p>
+                </div>
+            `;
+        }
     });
+}
+
+// Function to parse certificate CSV data
+function parseCertificateCSV(csvText) {
+    const lines = csvText.split('\n').filter(line => line.trim() !== '');
+    
+    if (lines.length < 2) {
+        return [];
+    }
+    
+    const headers = lines[0].split(',').map(h => h.trim().replace(/"/g, ''));
+    console.log('Certificate CSV Headers:', headers);
+    
+    const certificates = [];
+    
+    for (let i = 1; i < lines.length; i++) {
+        const line = lines[i];
+        const values = parseCSVLine(line);
+        
+        if (values.length === 0) continue;
+        
+        // Map values based on header patterns
+        const id = findValueByPattern(values, headers, ['id', 'certificate', 'certificateid', 'sl', 'serial']);
+        const name = findValueByPattern(values, headers, ['name', 'student', 'studentname', 'participant']);
+        const workshop = findValueByPattern(values, headers, ['workshop', 'workshopname', 'course', 'coursename', 'event']);
+        const date = findValueByPattern(values, headers, ['date', 'issuedate', 'completiondate', 'workshopdate']);
+        
+        if (id && name && workshop) {
+            certificates.push({
+                id: id,
+                name: name,
+                workshop: workshop,
+                date: date || null
+            });
+        }
+    }
+    
+    return certificates;
 }
 
 // --- Join Us Form ---
