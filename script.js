@@ -445,15 +445,15 @@ function closeMemberDetail() {
     document.body.style.overflow = ''; 
 }
 
-// --- Slideshow Functionality ---
+// 
 function initSlideshow() {
     const slideshowContainer = document.getElementById('slideshow');
     
-    // Replace these with your actual images
+    // 4:3 ratio images - replace these with your actual images
     const images = [
-        'https://placehold.co/1200x400/1E415A/00D4FF?text=BUILDING+THE+FUTURE+OF+AUTOMATION', 
-        'https://placehold.co/1200x400/00D4FF/1E415A?text=JOIN+OUR+NEXT+PROJECT+CYCLE',      
-        'https://placehold.co/1200x400/1E415A/FFFFFF?text=DIU+ROBOTICS+CLUB:+INNOVATION+DRIVEN'
+        'https://placehold.co/1200x900/1E415A/00D4FF?text=BUILDING+THE+FUTURE+OF+AUTOMATION', 
+        'https://placehold.co/1200x900/00D4FF/1E415A?text=JOIN+OUR+NEXT+PROJECT+CYCLE',      
+        'https://placehold.co/1200x900/1E415A/FFFFFF?text=DIU+ROBOTICS+CLUB:+INNOVATION+DRIVEN'
     ];
     
     let currentSlideIndex = 0;
