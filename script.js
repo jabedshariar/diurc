@@ -675,62 +675,68 @@ function parseCertificateCSV(csvText) {
     return certificates;
 }
 
+
 // --- Join Us Form ---
 function setupJoinForm() {
     const submitBtn = document.getElementById('submitApplication');
     const resultDiv = document.getElementById('applicationResult');
-    
-    submitBtn.addEventListener('click', function() {
-        const firstName = document.getElementById('firstName').value;
-        const lastName = document.getElementById('lastName').value;
-        const studentId = document.getElementById('studentId').value;
-        const department = document.getElementById('department').value;
-        const email = document.getElementById('email').value;
-        const phone = document.getElementById('phone').value;
-        
-        if (!firstName || !lastName || !studentId || !department || !email) {
+
+    submitBtn.addEventListener('click', async function () {
+        const firstName = document.getElementById('firstName').value.trim();
+        const lastName = document.getElementById('lastName').value.trim();
+        const studentId = document.getElementById('studentId').value.trim();
+        const department = document.getElementById('department').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const interest = document.getElementById('interest').value.trim();
+        const experience = document.getElementById('experience').value.trim();
+        const transactionId = document.getElementById('transactionId').value.trim();
+
+        if (!firstName || !lastName || !studentId || !department || !email || !phone || !interest || !experience || !transactionId) {
             resultDiv.innerHTML = `
                 <div class="error">
                     <i class="fas fa-exclamation-circle"></i>
-                    <p>Please fill in all required fields.</p>
+                    <p>Please fill in all fields before submitting.</p>
                 </div>
             `;
             resultDiv.style.display = 'block';
             return;
         }
-        
-        // Simulate form submission
-        resultDiv.innerHTML = `
-            <div class="loading">
-                <i class="fas fa-spinner"></i>
-                <p>Submitting your application...</p>
-            </div>
-        `;
+
+        // Send data to PHP
+        const formData = new URLSearchParams({
+            firstName, lastName, studentId, department, email, phone, interest, experience, transactionId
+        });
+
+        resultDiv.innerHTML = `<div class="loading"><i class="fas fa-spinner"></i><p>Submitting...</p></div>`;
         resultDiv.style.display = 'block';
-        
-        setTimeout(() => {
-            resultDiv.innerHTML = `
-                <div style="text-align: center; color: var(--accent-color);">
-                    <i class="fas fa-check-circle" style="font-size: 3rem; margin-bottom: 15px;"></i>
-                    <h3>Application Submitted Successfully!</h3>
-                    <p>Thank you, ${firstName} ${lastName}, for your interest in joining the DIU Robotics Club.</p>
-                    <p>We have received your application and will contact you at ${email} within 3-5 business days.</p>
-                    <p style="margin-top: 15px;">In the meantime, feel free to explore our projects and events!</p>
-                </div>
-            `;
-            
-            // Reset form
-            document.getElementById('firstName').value = '';
-            document.getElementById('lastName').value = '';
-            document.getElementById('studentId').value = '';
-            document.getElementById('department').value = '';
-            document.getElementById('email').value = '';
-            document.getElementById('phone').value = '';
-            document.getElementById('interest').value = '';
-            document.getElementById('experience').value = '';
-        }, 2000);
+
+        try {
+            const response = await fetch("backend/join_us.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: formData
+            });
+            const result = await response.json();
+
+            if (result.status === "success") {
+                resultDiv.innerHTML = `
+                    <div style="text-align:center; color:var(--accent-color);">
+                        <i class="fas fa-check-circle" style="font-size:3rem; margin-bottom:15px;"></i>
+                        <h3>${result.message}</h3>
+                    </div>`;
+                document.querySelector("#join-us form").reset();
+            } else {
+                resultDiv.innerHTML = `<div class="error"><p>${result.message}</p></div>`;
+            }
+        } catch (err) {
+            resultDiv.innerHTML = `<div class="error"><p>Server error. Please try again.</p></div>`;
+        }
     });
 }
+
+
+
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', async () => {
