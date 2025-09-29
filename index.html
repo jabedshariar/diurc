@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="dev-banner" id="devBanner">
+  <span>🚧 This site is under development 🚧</span>
+  <button onclick="document.getElementById('devBanner').style.display='none'">✖</button>
+</div>
+
+
     <!-- Header Section -->
     <header>
         <div class="container">
@@ -275,62 +281,76 @@
         <!-- ============================================== -->
         <!-- 8. JOIN US VIEW -->
         <!-- ============================================== -->
-        <div id="join-view" class="view hidden">
-            <div class="content-card">
-                <h2>Join DIU Robotics Club</h2>
-                <p style="text-align: center;">Fill out the form below to apply for membership in the DIU Robotics Club</p>
-                
-                <div class="join-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="firstName">First Name</label>
-                            <input type="text" id="firstName" placeholder="Enter your first name">
-                        </div>
-                        <div class="form-group">
-                            <label for="lastName">Last Name</label>
-                            <input type="text" id="lastName" placeholder="Enter your last name">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="studentId">Student ID</label>
-                        <input type="text" id="studentId" placeholder="Enter your student ID">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="department">Department</label>
-                        <input type="text" id="department" placeholder="Enter your department">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" placeholder="Enter your email address">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" placeholder="Enter your phone number">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="interest">Area of Interest</label>
-                        <input type="text" id="interest" placeholder="e.g., Robotics, AI, IoT, etc.">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="experience">Previous Experience (if any)</label>
-                        <input type="text" id="experience" placeholder="Briefly describe your experience">
-                    </div>
-                    
-                    <button class="submit-btn" id="submitApplication">Submit Application</button>
+            <div id="join-view" class="view hidden">
+        <div class="content-card">
+            <h2>Join DIU Robotics Club</h2>
+            <form id="joinForm">
+            <div class="form-row">
+                <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" placeholder="Enter your first name" required>
                 </div>
-                
-                <div id="applicationResult" style="margin-top: 30px; display: none;">
-                    <!-- Application result will be displayed here -->
+                <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" placeholder="Enter your last name" required>
                 </div>
             </div>
+
+            <div class="form-group">
+                <label for="studentId">Student ID</label>
+                <input type="text" id="studentId" placeholder="Enter your student ID" required>
+            </div>
+
+            <div class="form-group">
+                <label for="department">Department</label>
+                <input type="text" id="department" placeholder="Enter your department" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email address" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="text" id="phone" placeholder="Enter your phone number" required>
+            </div>
+
+            <div class="form-group">
+                <label for="interest">Area of Interest</label>
+                <input type="text" id="interest" placeholder="e.g. Robotics, AI, IoT, etc." required>
+            </div>
+
+            <div class="form-group">
+                <label for="experience">Previous Experience (if any)</label>
+                <textarea id="experience" placeholder="Briefly describe your experience" required></textarea>
+            </div>
+
+            <!--  Payment Instructions -->
+            <div class="payment-info">
+                <h3>Payment Method</h3>
+                <p>
+                <strong>Md Sameul Hasan</strong><br>
+                DIU Robotics Club<br>
+                Bkash (Send Money): <strong>01707654740</strong><br>
+                Email: hasan2305341334@diu.edu.bd<br>
+                Whatsapp: 01707654740
+                </p>
+            </div>
+
+            <!--  Transaction ID Field -->
+            <div class="form-group">
+                <label for="transactionId">Bkash Transaction ID</label>
+                <input type="text" id="transactionId" placeholder="Enter your Bkash Transaction ID" required>
+            </div>
+
+            <button type="button" id="submitApplication">Submit Application</button>
+            </form>
+
+            <div id="applicationResult"></div>
         </div>
-    </main>
+        </div>
+
 
     <!-- Footer -->
     <footer>
