@@ -14,6 +14,7 @@
     --anim-line-color: #003380ce;
     --anim-arm-color: #00C9A7;
     --anim-hand-color: #FFD166;    
+    --circuit-color: #4A90E2;
 }
 
 body.dark-mode {
@@ -29,8 +30,8 @@ body.dark-mode {
     --anim-line-color: #56d9eb;
     --anim-arm-color: #2ECC71;
     --anim-hand-color: #FFD166;
+    --circuit-color: #8B5CF6;
 }
-
 
 * {
     margin: 0;
@@ -48,60 +49,6 @@ body {
     display: flex;
     flex-direction: column;
 }
-.dev-banner {
-  background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
-  color: #fff;
-  text-align: center;
-  font-weight: 600;
-  padding: 12px 20px;
-  font-size: 1rem;
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: auto;
-  max-width: 90%;
-  border-radius: 10px;
-  z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-  animation: slideDown 0.6s ease-out;
-}
-
-.dev-banner span {
-  flex: 1;
-  text-align: center;
-}
-
-.dev-banner button {
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
-  color: #fff;
-  font-size: 1rem;
-  cursor: pointer;
-  padding: 4px 8px;
-  border-radius: 5px;
-  transition: background 0.3s;
-}
-
-.dev-banner button:hover {
-  background: rgba(255, 255, 255, 0.35);
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -30px);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
-}
-
 
 .container {
     max-width: 1200px;
@@ -262,18 +209,20 @@ input:checked + .slider:before {
     transform: translateX(26px);
 }
 
-/* --- Animation Elements --- */
+/* --- Refined Animation Elements --- */
 .animation-container {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.1;
+    opacity: 0.08;
     z-index: 1;
     overflow: hidden;
+    pointer-events: none;
 }
 
+/* Enhanced Gear Animations */
 .gear {
     position: absolute;
     border-radius: 50%;
@@ -281,31 +230,41 @@ input:checked + .slider:before {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2); 
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    opacity: 0.7;
+}
+
+.gear-inner {
+    position: absolute;
+    width: 40%;
+    height: 40%;
+    background: var(--bg-color);
+    border-radius: 50%;
+    border: 2px solid var(--anim-line-color);
 }
 
 .gear-large {
-    width: 80px;
-    height: 80px;
-    top: 20%;
-    right: 10%;
-    animation: rotate 15s linear infinite;
+    width: 100px;
+    height: 100px;
+    top: 15%;
+    right: 8%;
+    animation: rotate 18s linear infinite;
 }
 
 .gear-medium {
-    width: 60px;
-    height: 60px;
-    top: 60%;
-    left: 15%;
-    animation: rotate-reverse 12s linear infinite;
+    width: 70px;
+    height: 70px;
+    top: 55%;
+    left: 12%;
+    animation: rotate-reverse 14s linear infinite;
 }
 
 .gear-small {
-    width: 40px;
-    height: 40px;
-    top: 80%;
-    right: 20%;
-    animation: rotate 8s linear infinite;
+    width: 50px;
+    height: 50px;
+    top: 75%;
+    right: 15%;
+    animation: rotate 10s linear infinite;
 }
 
 .gear-teeth {
@@ -317,112 +276,169 @@ input:checked + .slider:before {
 .gear-teeth::before {
     content: '';
     position: absolute;
-    width: 10px;
-    height: 30px;
+    width: 12px;
+    height: 35px;
     background: var(--anim-line-color);
-    top: -15px;
+    top: -17px;
     left: 50%;
     transform: translateX(-50%);
-    border-radius: 5px;
+    border-radius: 6px;
+    box-shadow: 0 0 8px var(--anim-line-color);
 }
 
+/* Enhanced Robot Arm */
 .robot-arm {
     position: absolute;
-    width: 8px;
-    height: 100px;
-    background: var(--anim-arm-color);
-    bottom: 0;
-    left: 30%;
+    width: 10px;
+    height: 120px;
+    background: linear-gradient(to bottom, var(--anim-arm-color), var(--anim-hand-color));
+    bottom: -10px;
+    left: 25%;
     transform-origin: bottom center;
-    animation: arm-move 6s ease-in-out infinite;
+    animation: arm-move 8s ease-in-out infinite;
+    border-radius: 5px 5px 0 0;
+}
+
+.arm-segment {
+    position: absolute;
+    width: 8px;
+    height: 60px;
+    background: var(--anim-arm-color);
+    top: 0;
+    left: 1px;
+    transform-origin: top center;
+    animation: arm-segment 4s ease-in-out infinite;
 }
 
 .robot-hand {
     position: absolute;
-    width: 20px;
-    height: 15px;
+    width: 25px;
+    height: 20px;
     background: var(--anim-hand-color);
-    top: -15px;
+    top: -20px;
     left: 50%;
     transform: translateX(-50%);
-    border-radius: 5px 5px 0 0;
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 -3px 10px rgba(255, 209, 102, 0.5);
 }
 
-.circuit {
+/* Enhanced Circuit Board */
+.circuit-board {
     position: absolute;
-    width: 120px;
-    height: 80px;
-    bottom: 20px;
-    right: 10%;
-    border: 2px solid var(--secondary-color);
-    border-radius: 10px;
-    opacity: 0.5;
-    animation: pulse 4s infinite alternate;
+    width: 150px;
+    height: 100px;
+    bottom: 30px;
+    right: 8%;
+    border: 3px solid var(--circuit-color);
+    border-radius: 12px;
+    opacity: 0.6;
+    animation: circuit-pulse 6s infinite alternate;
+    background: linear-gradient(45deg, transparent 49%, var(--circuit-color) 49%, var(--circuit-color) 51%, transparent 51%);
 }
 
-.circuit::before, .circuit::after {
-    content: '';
+.circuit-line {
     position: absolute;
-    width: 4px;
-    height: 4px;
-    background: var(--secondary-color);
+    width: 80%;
+    height: 2px;
+    background: var(--circuit-color);
+    top: 50%;
+    left: 10%;
+    animation: circuit-flow 3s linear infinite;
+}
+
+.circuit-node {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--circuit-color);
     border-radius: 50%;
+    animation: node-pulse 2s infinite alternate;
 }
 
-.circuit::before {
-    top: 10px;
-    left: 10px;
-    box-shadow: 
-        0 15px 0 var(--secondary-color),
-        0 30px 0 var(--secondary-color),
-        20px 0 0 var(--secondary-color),
-        20px 15px 0 var(--secondary-color),
-        20px 30px 0 var(--secondary-color),
-        40px 0 0 var(--secondary-color),
-        40px 15px 0 var(--secondary-color),
-        40px 30px 0 var(--secondary-color);
-}
+.circuit-node:nth-child(2) { top: 20px; left: 20px; animation-delay: 0.5s; }
+.circuit-node:nth-child(3) { top: 20px; right: 20px; animation-delay: 1s; }
+.circuit-node:nth-child(4) { bottom: 20px; left: 20px; animation-delay: 1.5s; }
 
+/* Enhanced Floating Particles */
 .floating-particle {
     position: absolute;
     background: var(--accent-color);
     border-radius: 50%;
-    opacity: 0.7;
-    animation: float 15s infinite linear;
+    opacity: 0.6;
+    animation: float 20s infinite linear;
+    box-shadow: 0 0 10px var(--accent-color);
 }
 
-.p1 { width: 6px; height: 6px; top: 15%; left: 5%; animation-duration: 20s; }
-.p2 { width: 4px; height: 4px; top: 40%; left: 80%; animation-duration: 25s; }
-.p3 { width: 8px; height: 8px; top: 70%; left: 10%; animation-duration: 18s; }
-.p4 { width: 5px; height: 5px; top: 30%; left: 60%; animation-duration: 22s; }
-.p5 { width: 7px; height: 7px; top: 85%; left: 70%; animation-duration: 17s; }
+.p1 { width: 8px; height: 8px; top: 20%; left: 8%; animation-duration: 25s; }
+.p2 { width: 6px; height: 6px; top: 45%; left: 85%; animation-duration: 30s; }
+.p3 { width: 10px; height: 10px; top: 65%; left: 12%; animation-duration: 22s; }
+.p4 { width: 7px; height: 7px; top: 35%; left: 65%; animation-duration: 28s; }
+.p5 { width: 9px; height: 9px; top: 80%; left: 75%; animation-duration: 20s; }
 
+/* Binary Stream Animation */
+.binary-stream {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent 50%, rgba(0, 212, 255, 0.1) 50%);
+    background-size: 4px 4px;
+    animation: binary-move 15s linear infinite;
+    opacity: 0.3;
+}
+
+/* Enhanced Animations */
 @keyframes rotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.05); }
+    100% { transform: rotate(360deg) scale(1); }
 }
 
 @keyframes rotate-reverse {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(-360deg); }
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(-180deg) scale(1.05); }
+    100% { transform: rotate(-360deg) scale(1); }
 }
 
 @keyframes arm-move {
-    0%, 100% { transform: rotate(-15deg); }
-    50% { transform: rotate(15deg); }
+    0%, 100% { transform: rotate(-20deg) translateY(0); }
+    25% { transform: rotate(0deg) translateY(-5px); }
+    50% { transform: rotate(20deg) translateY(0); }
+    75% { transform: rotate(0deg) translateY(5px); }
 }
 
-@keyframes pulse {
-    0% { opacity: 0.3; }
-    100% { opacity: 0.7; }
+@keyframes arm-segment {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(30deg); }
+}
+
+@keyframes circuit-pulse {
+    0% { opacity: 0.4; box-shadow: 0 0 10px var(--circuit-color); }
+    100% { opacity: 0.8; box-shadow: 0 0 20px var(--circuit-color); }
+}
+
+@keyframes circuit-flow {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes node-pulse {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.5); opacity: 1; }
 }
 
 @keyframes float {
-    0% { transform: translateY(0) translateX(0); }
-    25% { transform: translateY(-20px) translateX(10px); }
-    50% { transform: translateY(-10px) translateX(20px); }
-    75% { transform: translateY(10px) translateX(10px); }
-    100% { transform: translateY(0) translateX(0); }
+    0% { transform: translateY(0) translateX(0) rotate(0deg); }
+    25% { transform: translateY(-30px) translateX(15px) rotate(90deg); }
+    50% { transform: translateY(-15px) translateX(30px) rotate(180deg); }
+    75% { transform: translateY(15px) translateX(15px) rotate(270deg); }
+    100% { transform: translateY(0) translateX(0) rotate(360deg); }
+}
+
+@keyframes binary-move {
+    0% { background-position: 0 0; }
+    100% { background-position: 4px 4px; }
 }
 
 /* View Switching */
@@ -507,16 +523,12 @@ p, ul {
 }
 
 /* Team Grid Styles */
-/* ===== TEAM SECTION STYLES ===== */
-
-/* Team Container */
 .team-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* President Card - Centered at top */
 .president-card {
     width: 100%;
     max-width: 400px;
@@ -528,23 +540,14 @@ p, ul {
     padding: 25px;
     border-radius: 12px;
     background-color: var(--card-color);
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
-.president-card::before {
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--accent-color);
-    color: white;
-    padding: 6px 20px;
-    border-radius: 25px;
-    font-size: 0.9rem;
-    font-weight: 700;
-    z-index: 2;
+.president-card:hover {
+    transform: translateY(-5px);
 }
 
-/* Regular team grid below president */
 .team-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -552,7 +555,6 @@ p, ul {
     width: 100%;
 }
 
-/* Member Card Base Styles */
 .member-card {
     text-align: center;
     padding: 20px;
@@ -593,75 +595,10 @@ p, ul {
     line-height: 1.3;
 }
 
-.member-card p.role {
-    font-weight: 600;
-    color: var(--accent-color);
-    margin-top: 5px;
-    margin-bottom: 10px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .president-card {
-        max-width: 350px;
-        margin-bottom: 30px;
-    }
-    
-    .team-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-    }
-}
-
-@media (max-width: 576px) {
-    .president-card {
-        max-width: 300px;
-        margin-bottom: 25px;
-    }
-    
-    .team-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-}
-.member-card {
-    text-align: center;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: var(--card-color);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    border: 1px solid var(--border-color);
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-.member-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px var(--highlight-shadow);
-}
-.member-card img {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 10px;
-    border: 3px solid var(--accent-color);
-}
-.member-card h4 {
-    font-size: 1.1rem;
-    color: var(--primary-color);
-    margin-bottom: 5px;
-    font-weight: 700;
-    line-height: 1.3;
-}
-.member-card p {
-    font-size: 0.85rem;
-    color: var(--text-color);
-    margin: 0;
-    line-height: 1.3;
-}
 body.dark-mode .member-card h4 {
     color: var(--secondary-color);
 }
+
 .member-card p.role {
     font-weight: 600;
     color: var(--accent-color);
@@ -739,7 +676,6 @@ body.dark-mode .member-card h4 {
 }
 
 /* Members Section */
-/* ===== MEMBERS GRID STYLES ===== */
 .members-section {
     padding: 40px 0;
     flex-grow: 1;
@@ -761,7 +697,6 @@ body.dark-mode .member-card h4 {
     margin: 10px auto;
 }
 
-/* Main Members Grid - This is the key part */
 .members-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -770,15 +705,6 @@ body.dark-mode .member-card h4 {
     width: 100%;
 }
 
-/* Team member grid */
-.member-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    margin-top: 30px;
-}
-
-/* Member Card Styles */
 .member-card {
     background-color: var(--card-color);
     border-radius: 12px;
@@ -838,20 +764,6 @@ body.dark-mode .member-card h4 {
     border-top: 1px solid var(--border-color);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .members-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 20px;
-    }
-}
-
-@media (max-width: 576px) {
-    .members-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-}
 /* Loading and Error States */
 .loading, .error {
     text-align: center;
@@ -914,30 +826,25 @@ body.dark-mode .recruitment-notice {
 }
 
 .page-btn {
-    padding: 8px 15px;
-    background-color: var(--dark-card);
-    border: 1px solid var(--dark-border);
-    border-radius: 5px;
-    color: var(--dark-text);
+    padding: 10px 15px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-color);
     cursor: pointer;
     transition: all 0.3s ease;
-}
-
-.light-mode .page-btn {
-    background-color: var(--light-card);
-    border: 1px solid var(--light-border);
-    color: var(--light-text);
+    font-size: 0.9rem;
 }
 
 .page-btn:hover {
-    background-color: var(--royal-blue);
-    border-color: var(--royal-blue);
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
     color: white;
 }
 
 .page-btn.active {
-    background-color: var(--royal-blue);
-    border-color: var(--royal-blue);
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
     color: white;
 }
 
@@ -1132,7 +1039,7 @@ body.dark-mode footer {
     color: var(--primary-color);
 }
 
-.form-group input {
+.form-group input, .form-group textarea {
     width: 100%;
     padding: 12px 15px;
     border: 1px solid var(--border-color);
@@ -1140,11 +1047,13 @@ body.dark-mode footer {
     background-color: var(--input-bg);
     color: var(--text-color);
     font-size: 1rem;
+    resize: vertical;
 }
 
-.form-group input:focus {
+.form-group input:focus, .form-group textarea:focus {
     outline: none;
     border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(0, 185, 185, 0.1);
 }
 
 .submit-btn {
@@ -1162,6 +1071,8 @@ body.dark-mode footer {
 
 .submit-btn:hover {
     background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Join Us Form */
@@ -1169,48 +1080,6 @@ body.dark-mode footer {
     max-width: 600px;
     margin: 0 auto;
 }
-#joinForm button {
-  width: 100%;
-  padding: 12px;
-  background: linear-gradient(90deg, #007bff, #00c6ff);
-  border: none;
-  border-radius: 6px;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-form textarea {
-  width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #2a2f3a;
-  border-radius: 6px;
-  background: #111827;
-  color: #e5e7eb;
-  font-size: 14px;
-  resize: vertical;
-  min-height: 80px;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-form textarea:focus {
-  border-color: #3b82f6;
-  box-shadow: 0 0 6px rgba(59, 130, 246, 0.5);
-  outline: none;
-}
-
-
-#joinForm button:hover {
-  background: linear-gradient(90deg, #0056b3, #0099cc);
-  transform: translateY(-2px);
-}
-
-#joinForm button:active {
-  transform: translateY(0);
-}
-
 
 .form-row {
     display: flex;
@@ -1222,21 +1091,22 @@ form textarea:focus {
     flex: 1;
     margin-bottom: 0;
 }
+
 .payment-info {
-  background: rgba(0, 123, 255, 0.05);
-  border-left: 4px solid var(--accent-color);
-  padding: 12px 15px;
-  margin: 15px 0;
-  border-radius: 6px;
-  font-size: 0.95rem;
-  color: var(--text-color);
+    background: rgba(0, 123, 255, 0.05);
+    border-left: 4px solid var(--accent-color);
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    color: var(--text-color);
 }
+
 .payment-info h3 {
-  margin: 0 0 8px;
-  color: var(--accent-color);
+    margin: 0 0 8px;
+    color: var(--accent-color);
+    text-align: left;
 }
-
-
 
 /* Responsive Design */
 @media (max-width: 900px) {
@@ -1255,13 +1125,6 @@ form textarea:focus {
         width: 100%;
         justify-content: space-between;
     }
-    .member-controls {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    .member-controls select, .member-controls input {
-        width: 100%;
-    }
     .form-row {
         flex-direction: column;
         gap: 0;
@@ -1270,7 +1133,7 @@ form textarea:focus {
 
 @media (max-width: 768px) {
     .animation-container {
-        display: none; 
+        opacity: 0.05;
     }
     .search-box {
         border-radius: 8px;
@@ -1288,9 +1151,6 @@ form textarea:focus {
     }
     .members-grid {
         grid-template-columns: 1fr;
-    }
-    .directory-member-card {
-        padding: 15px;
     }
     .footer-content {
         flex-direction: column;
