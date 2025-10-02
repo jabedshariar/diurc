@@ -6,27 +6,18 @@
     <title>DIU Robotics Club - Official Website</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 <body>
-    <div class="dev-banner" id="devBanner">
-  <span>🚧 This site is under development 🚧</span>
-  <button onclick="document.getElementById('devBanner').style.display='none'">✖</button>
-</div>
-
-
     <!-- Header Section -->
     <header>
         <div class="container">
             <div class="header-content">
                 <div class="logo-container">
                     <div class="logo" onclick="showView('home-view')">
-                        <img src="diurc_logo.png" 
-                            
-                             alt="DIU Robotics Club Logo" />
+                        <img src="diurc_logo.png" alt="DIU Robotics Club Logo" />
                         <div class="logo-text">
-                        
-                               <h1><b>DIU Robotics Club</b></h1>
-        
+                            <h1><b>DIU Robotics Club</b></h1>
                             <div class="subtitle">Innovation & Automation</div>
                         </div>
                     </div>
@@ -60,22 +51,32 @@
         <div class="animation-container">
             <div class="gear gear-large">
                 <div class="gear-teeth"></div>
+                <div class="gear-inner"></div>
             </div>
             <div class="gear gear-medium">
                 <div class="gear-teeth"></div>
+                <div class="gear-inner"></div>
             </div>
             <div class="gear gear-small">
                 <div class="gear-teeth"></div>
+                <div class="gear-inner"></div>
             </div>
             <div class="robot-arm">
+                <div class="arm-segment"></div>
                 <div class="robot-hand"></div>
             </div>
-            <div class="circuit"></div>
+            <div class="circuit-board">
+                <div class="circuit-line"></div>
+                <div class="circuit-node"></div>
+                <div class="circuit-node"></div>
+                <div class="circuit-node"></div>
+            </div>
             <div class="floating-particle p1"></div>
             <div class="floating-particle p2"></div>
             <div class="floating-particle p3"></div>
             <div class="floating-particle p4"></div>
             <div class="floating-particle p5"></div>
+            <div class="binary-stream"></div>
         </div>
     </header>
 
@@ -94,19 +95,17 @@
             <section class="content-section" id="intro">
                 <div class="content-card">
                     <h2>Welcome to the DIU Robotics Club</h2>
-                    <p style="text-align: justify;">The DIU Robotics Club is a vibrant and dynamic student organization at Daffodil International University, dedicated to exploring the fascinating world of robotics, electronics, and intelligent systems. As one of the most active and innovative clubs on campus, we create opportunities for students from all departments to learn, build, and showcase their skills in robotics and automation. Through workshops, competitions, and collaborative projects, the club serves as a platform for transforming creative ideas into real-world solutions, while fostering teamwork, problem-solving, and leadership among its members.
-
-</p>
+                    <p style="text-align: justify;">The DIU Robotics Club is a vibrant and dynamic student organization at Daffodil International University, dedicated to exploring the fascinating world of robotics, electronics, and intelligent systems. As one of the most active and innovative clubs on campus, we create opportunities for students from all departments to learn, build, and showcase their skills in robotics and automation. Through workshops, competitions, and collaborative projects, the club serves as a platform for transforming creative ideas into real-world solutions, while fostering teamwork, problem-solving, and leadership among its members.</p>
                 </div>
             </section>
-<section class="content-section" id="intro">
+
+            <section class="content-section" id="intro">
                 <div class="content-card">
                     <h2>Upcoming Event</h2>
-                    <p style="text-align: justify;">The DIU Robotics Club is a vibrant and dynamic student organization at Daffodil International University, dedicated to exploring the fascinating world of robotics, electronics, and intelligent systems. As one of the most active and innovative clubs on campus, we create opportunities for students from all departments to learn, build, and showcase their skills in robotics and automation. Through workshops, competitions, and collaborative projects, the club serves as a platform for transforming creative ideas into real-world solutions, while fostering teamwork, problem-solving, and leadership among its members.
-
-</p>
+                    <p style="text-align: justify;">Join us for our upcoming Robotics Workshop Series starting next month! Learn about Arduino programming, sensor integration, and basic robotics principles. Perfect for beginners and advanced enthusiasts alike. Stay tuned for registration details!</p>
                 </div>
             </section>
+
             <section class="content-section mission-vision-section" id="mission">
                 <div class="mission-vision-grid">
                     <div class="content-card">
@@ -121,25 +120,26 @@
             </section>
         </div>
         
-       <!-- ============================================== -->
-<!-- 2. TEAM VIEW (15 Members with details) -->
-<!-- ============================================== -->
-<div id="team-view" class="view hidden">
-    <div class="team-container">
-        <h2>Our Core Team - Leadership Panel</h2>
-        <p style="text-align: center; margin-bottom: 30px;">Meet the dedicated individuals who lead the club's various functional and technical wings. Click a card for details.</p>
-        
-        <!-- President Card will be inserted here -->
-        <div id="presidentCard" class="member-card president-card" style="display: none;"></div>
-        
-        <!-- Other team members grid -->
-        <div id="teamList" class="team-grid">
-            <!-- Other team member cards will be dynamically injected here -->
-        </div>
-    </div>
-</div>
         <!-- ============================================== -->
-        <!-- 3. MEMBERS VIEW (Directory - Full Member Directory) -->
+        <!-- 2. TEAM VIEW -->
+        <!-- ============================================== -->
+        <div id="team-view" class="view hidden">
+            <div class="team-container">
+                <h2>Our Core Team - Leadership Panel</h2>
+                <p style="text-align: center; margin-bottom: 30px;">Meet the dedicated individuals who lead the club's various functional and technical wings. Click a card for details.</p>
+                
+                <!-- President Card will be inserted here -->
+                <div id="presidentCard" class="member-card president-card" style="display: none;"></div>
+                
+                <!-- Other team members grid -->
+                <div id="teamList" class="team-grid">
+                    <!-- Other team member cards will be dynamically injected here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- 3. MEMBERS VIEW -->
         <!-- ============================================== -->
         <div id="members-view" class="view hidden">
             <!-- Search Section -->
@@ -164,31 +164,30 @@
             </section>
 
             <!-- Members Section -->
-           <section class="members-section">
-        <div class="container">
-            <h2 class="section-title">Our Members</h2>
-            <div id="dataInfo" class="data-info" style="display: none;"></div>
-            <div id="loadingState" class="loading">
-                <i class="fas fa-robot"></i>
-                <p>Loading member data from Google Sheets...</p>
-            </div>
-            <div id="errorState" class="error" style="display: none;">
-                <i class="fas fa-exclamation-triangle"></i>
-                <p>Error loading data. Please try again later.</p>
-            </div>
-            <div class="members-grid" id="membersGrid">
-                <!-- Member cards will be dynamically generated here -->
-            </div>
-            
-            <!-- Pagination -->
-            <div class="pagination" id="pagination" style="display: none;">
-                <button class="page-btn" id="prevPage"><i class="fas fa-chevron-left"></i> Previous</button>
-                <div class="page-numbers" id="pageNumbers"></div>
-                <button class="page-btn" id="nextPage">Next <i class="fas fa-chevron-right"></i></button>
-            </div>
-        </div>
-    </section>
-
+            <section class="members-section">
+                <div class="container">
+                    <h2 class="section-title">Our Members</h2>
+                    <div id="dataInfo" class="data-info" style="display: none;"></div>
+                    <div id="loadingState" class="loading">
+                        <i class="fas fa-robot"></i>
+                        <p>Loading member data from Google Sheets...</p>
+                    </div>
+                    <div id="errorState" class="error" style="display: none;">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>Error loading data. Please try again later.</p>
+                    </div>
+                    <div class="members-grid" id="membersGrid">
+                        <!-- Member cards will be dynamically generated here -->
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="pagination" id="pagination" style="display: none;">
+                        <button class="page-btn" id="prevPage"><i class="fas fa-chevron-left"></i> Previous</button>
+                        <div class="page-numbers" id="pageNumbers"></div>
+                        <button class="page-btn" id="nextPage">Next <i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </section>
         </div>
 
         <!-- ============================================== -->
@@ -265,13 +264,13 @@
                 <h2>Certificate Verification</h2>
                 <p style="text-align: center;">Verify the authenticity of DIU Robotics Club certificates</p>
                 
-           <div class="verification-form">
-    <div class="form-group">
-        <label for="certificateId">Certificate ID</label>
-        <input type="text" id="certificateId" placeholder="Enter certificate ID (e.g., DIURC2024001)">
-    </div>
-    <button class="submit-btn" id="verifyCertificate">Verify Certificate</button>
-</div>
+                <div class="verification-form">
+                    <div class="form-group">
+                        <label for="certificateId">Certificate ID</label>
+                        <input type="text" id="certificateId" placeholder="Enter certificate ID (e.g., DIURC2024001)">
+                    </div>
+                    <button class="submit-btn" id="verifyCertificate">Verify Certificate</button>
+                </div>
                 <div id="verificationResult" style="margin-top: 30px; display: none;">
                     <!-- Verification result will be displayed here -->
                 </div>
@@ -281,76 +280,81 @@
         <!-- ============================================== -->
         <!-- 8. JOIN US VIEW -->
         <!-- ============================================== -->
-            <div id="join-view" class="view hidden">
-        <div class="content-card">
-            <h2>Join DIU Robotics Club</h2>
-            <form id="joinForm">
-            <div class="form-row">
-                <div class="form-group">
-                <label for="firstName">First Name</label>
-                <input type="text" id="firstName" placeholder="Enter your first name" required>
+        <div id="join-view" class="view hidden">
+            <div class="content-card">
+                <h2>Join DIU Robotics Club</h2>
+                <p style="text-align: center;">Fill out the form below to apply for membership in the DIU Robotics Club</p>
+                
+                <div class="join-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" placeholder="Enter your first name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" placeholder="Enter your last name" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="studentId">Student ID</label>
+                        <input type="text" id="studentId" placeholder="Enter your student ID" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="department">Department</label>
+                        <input type="text" id="department" placeholder="Enter your department" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="Enter your phone number" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="interest">Area of Interest</label>
+                        <input type="text" id="interest" placeholder="e.g., Robotics, AI, IoT, etc." required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="experience">Previous Experience (if any)</label>
+                        <textarea id="experience" placeholder="Briefly describe your experience" rows="3"></textarea>
+                    </div>
+
+                    <!-- Payment Information -->
+                    <div class="payment-info">
+                        <h3>Payment Information</h3>
+                        <p><strong>Membership Fee:</strong> 200 BDT</p>
+                        <p><strong>Payment Method:</strong> BKash</p>
+                         <p><strong>BKash Number(Send Money):</strong> 01707654740</p>
+                        <p><small>Please complete the payment and provide the transaction details below.</small></p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="transactionId">Transaction ID</label>
+                        <input type="text" id="transactionId" placeholder="Enter BKash transaction ID" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sendMoneyNumber">Your BKash Number</label>
+                        <input type="tel" id="sendMoneyNumber" placeholder="Enter your BKash number" required>
+                    </div>
+                    
+                    <button class="submit-btn" id="submitApplication">Submit Application</button>
                 </div>
-                <div class="form-group">
-                <label for="lastName">Last Name</label>
-                <input type="text" id="lastName" placeholder="Enter your last name" required>
+                
+                <div id="applicationResult" style="margin-top: 30px; display: none;">
+                    <!-- Application result will be displayed here -->
                 </div>
             </div>
-
-            <div class="form-group">
-                <label for="studentId">Student ID</label>
-                <input type="text" id="studentId" placeholder="Enter your student ID" required>
-            </div>
-
-            <div class="form-group">
-                <label for="department">Department</label>
-                <input type="text" id="department" placeholder="Enter your department" required>
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" placeholder="Enter your email address" required>
-            </div>
-
-            <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="text" id="phone" placeholder="Enter your phone number" required>
-            </div>
-
-            <div class="form-group">
-                <label for="interest">Area of Interest</label>
-                <input type="text" id="interest" placeholder="e.g. Robotics, AI, IoT, etc." required>
-            </div>
-
-            <div class="form-group">
-                <label for="experience">Previous Experience (if any)</label>
-                <textarea id="experience" placeholder="Briefly describe your experience" required></textarea>
-            </div>
-
-            <!--  Payment Instructions -->
-            <div class="payment-info">
-                <h3>Payment Method</h3>
-                <p>
-                <strong>Md Sameul Hasan</strong><br>
-                DIU Robotics Club<br>
-                Bkash (Send Money): <strong>01707654740</strong><br>
-                Email: hasan2305341334@diu.edu.bd<br>
-                Whatsapp: 01707654740
-                </p>
-            </div>
-
-            <!--  Transaction ID Field -->
-            <div class="form-group">
-                <label for="transactionId">Bkash Transaction ID</label>
-                <input type="text" id="transactionId" placeholder="Enter your Bkash Transaction ID" required>
-            </div>
-
-            <button type="button" id="submitApplication">Submit Application</button>
-            </form>
-
-            <div id="applicationResult"></div>
         </div>
-        </div>
-
+    </main>
 
     <!-- Footer -->
     <footer>
@@ -401,7 +405,6 @@
                 <p><strong>Role:</strong> <span id="modalMemberRole"></span></p>
                 <p><strong>Department:</strong> <span id="modalMemberDept"></span></p>
                 <p><strong>Contact:</strong> <span id="modalMemberContact"></span></p>
-                
             </div>
         </div>
     </div>
