@@ -1,3 +1,8 @@
+// EmailJS Configuration
+const EMAILJS_PUBLIC_KEY = "VM_zoAP9hd8QdhIha";
+const EMAILJS_SERVICE_ID = "service_w2z49rr";
+const EMAILJS_TEMPLATE_ID = "template_a9z2k1f";
+
 // Google Sheets CSV URLs
 const MEMBER_SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTAfWL7HN5tJ8l0i-vsQNctM5Jv2yJNM7kUvRwWyISUApNBFpDNeIlavto0MljoVw/pub?output=csv";
 const CERTIFICATE_SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSgMTRcOrte06XqsvulaJA8PohkTl3RB5yYXoevm5BQIVU-ubnXz5uLCaRN7p7deHHX9A0xPbFHT359/pub?output=csv";
@@ -11,6 +16,12 @@ let filteredMembers = [];
 function toggleTheme() {
     const isDarkMode = document.body.classList.toggle('dark-mode');
     localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    updateAnimationsForTheme();
+}
+
+function updateAnimationsForTheme() {
+    // This function can be extended to update animation colors based on theme
+    console.log('Theme updated, animations adjusted');
 }
 
 // --- Data Fetching and Parsing ---
@@ -21,7 +32,7 @@ async function fetchMemberData() {
     const dataInfo = document.getElementById('dataInfo');
     const pagination = document.getElementById('pagination');
 
-  try {
+    try {
         // Show loading state
         loadingElement.style.display = 'block';
         errorElement.style.display = 'none';
@@ -72,7 +83,7 @@ async function fetchMemberData() {
         // Hide loading state
         loadingElement.style.display = 'none';
         
-    }  catch (error) {
+    } catch (error) {
         console.error('Error fetching member data:', error);
         loadingElement.style.display = 'none';
         errorElement.style.display = 'block';
@@ -388,21 +399,21 @@ function filterMembers() {
 
 // --- Team Data and Modal Functions ---
 const MOCK_TEAM_MEMBERS = [
-  { id: '221-33-1531', name: 'Jabed Shariar', dept: 'EEE', role: 'Acting President', email: 'shariar33-1531@diu.edu.bd', img: 'js.jpg' },
-  { id: '232-35-179', name: 'Al Hasib Arafat', dept: 'SWE', role: 'Member', email: 'arafat2305341179@diu.edu.bd', img: 'aa.jpg' },
-  { id: '242220005101880', name: 'Md. Swadhin Miah', dept: 'CSE', role: 'Member', email: 'miah22205101880@diu.edu.bd', img: 'sm.jpg' },
-  { id: '242220005101750', name: 'Md. Rifat Mia', dept: 'CSE', role: 'Member', email: 'mia22205101750@diu.edu.bd', img: 'rm.jpg' },
-  { id: '232-15-353', name: 'Md. Masud Rana', dept: 'CSE', role: 'Member', email: 'rana2305101353@diu.edu.bd', img: 'mr.jpg' },
-  { id: '232-35-334', name: 'Md. Sameul Hasan', dept: 'SWE', role: 'Member', email: 'hasan2305341334@diu.edu.bd', img: 'sh.jpg' },
-  { id: '232-35-565', name: 'Md. Naimur Rahman Nayem', dept: 'SWE', role: 'Member', email: 'nayem2305341565@diu.edu.bd', img: 'nn.jpg' },
-  { id: '232-33-101', name: 'H M Rahad Ahammed', dept: 'EEE', role: 'Member', email: 'ahammed2305131101@diu.edu.bd', img: 'ra.jpg' },
-  { id: '242-35-298', name: 'Md. Irfan Uddin', dept: 'SWE', role: 'Member', email: 'irfan242-35-298@diu.edu.bd', img: 'iu.jpg' },
-  { id: '242-33-200', name: 'Mahadi Alam Shahib', dept: 'EEE', role: 'Member', email: 'shahib242-33-200@diu.edu.bd', img: 'ms.jpg' },
-  { id: '242-33-044', name: 'Md. Hasibul Hasan Shanto', dept: 'EEE', role: 'Member', email: 'shanto242-33-044@diu.edu.bd', img: 'hs.jpg' },
-  { id: '0242220005341193', name: 'Md Mohiuddin Maruf', dept: 'SWE', role: 'Member', email: 'maruf22205341193@diu.edu.bd', img: 'mm.jpg' },
-  { id: '0242410005341067', name: 'Md Ratul Bhuiyan', dept: 'SWE', role: 'Member', email: 'ratul241-35-067@diu.edu.bd', img: 'rb.jpg' },
-  { id: '0242410005341013', name: 'Asad Al Adil Sayed', dept: 'SWE', role: 'Member', email: 'adil241-35-013@diu.edu.bd', img: 'as.jpg' },
-  { id: '232-35-558', name: 'Roktim Saha', dept: 'SWE', role: 'Member', email: 'saha2305341558@diu.edu.bd', img: 'rs.jpg' }
+    { id: '221-33-1531', name: 'Jabed Shariar', dept: 'EEE', role: 'Acting President', email: 'shariar33-1531@diu.edu.bd', img: 'js.jpg' },
+    { id: '232-35-179', name: 'Al Hasib Arafat', dept: 'SWE', role: 'Member', email: 'arafat2305341179@diu.edu.bd', img: 'aa.jpg' },
+    { id: '242220005101880', name: 'Md. Swadhin Miah', dept: 'CSE', role: 'Member', email: 'miah22205101880@diu.edu.bd', img: 'sm.jpg' },
+    { id: '242220005101750', name: 'Md. Rifat Mia', dept: 'CSE', role: 'Member', email: 'mia22205101750@diu.edu.bd', img: 'rm.jpg' },
+    { id: '232-15-353', name: 'Md. Masud Rana', dept: 'CSE', role: 'Member', email: 'rana2305101353@diu.edu.bd', img: 'mr.jpg' },
+    { id: '232-35-334', name: 'Md. Sameul Hasan', dept: 'SWE', role: 'Member', email: 'hasan2305341334@diu.edu.bd', img: 'sh.jpg' },
+    { id: '232-35-565', name: 'Md. Naimur Rahman Nayem', dept: 'SWE', role: 'Member', email: 'nayem2305341565@diu.edu.bd', img: 'nn.jpg' },
+    { id: '232-33-101', name: 'H M Rahad Ahammed', dept: 'EEE', role: 'Member', email: 'ahammed2305131101@diu.edu.bd', img: 'ra.jpg' },
+    { id: '242-35-298', name: 'Md. Irfan Uddin', dept: 'SWE', role: 'Member', email: 'irfan242-35-298@diu.edu.bd', img: 'iu.jpg' },
+    { id: '242-33-200', name: 'Mahadi Alam Shahib', dept: 'EEE', role: 'Member', email: 'shahib242-33-200@diu.edu.bd', img: 'ms.jpg' },
+    { id: '242-33-044', name: 'Md. Hasibul Hasan Shanto', dept: 'EEE', role: 'Member', email: 'shanto242-33-044@diu.edu.bd', img: 'hs.jpg' },
+    { id: '0242220005341193', name: 'Md Mohiuddin Maruf', dept: 'SWE', role: 'Member', email: 'maruf22205341193@diu.edu.bd', img: 'mm.jpg' },
+    { id: '0242410005341067', name: 'Md Ratul Bhuiyan', dept: 'SWE', role: 'Member', email: 'ratul241-35-067@diu.edu.bd', img: 'rb.jpg' },
+    { id: '0242410005341013', name: 'Asad Al Adil Sayed', dept: 'SWE', role: 'Member', email: 'adil241-35-013@diu.edu.bd', img: 'as.jpg' },
+    { id: '232-35-558', name: 'Roktim Saha', dept: 'SWE', role: 'Member', email: 'saha2305341558@diu.edu.bd', img: 'rs.jpg' }
 ];
 
 function renderTeamMembers() {
@@ -544,7 +555,7 @@ function showView(viewId) {
     if (viewId === 'members-view') {
         fetchMemberData();
     } else if (viewId === 'team-view') {
-         renderTeamMembers();
+        renderTeamMembers();
     }
 }
 
@@ -675,13 +686,15 @@ function parseCertificateCSV(csvText) {
     return certificates;
 }
 
-
-// --- Join Us Form ---
+// --- Join Us Form with EmailJS ---
 function setupJoinForm() {
     const submitBtn = document.getElementById('submitApplication');
     const resultDiv = document.getElementById('applicationResult');
 
-    submitBtn.addEventListener('click', async function () {
+    // Initialize EmailJS
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+
+    submitBtn.addEventListener('click', async function() {
         const firstName = document.getElementById('firstName').value.trim();
         const lastName = document.getElementById('lastName').value.trim();
         const studentId = document.getElementById('studentId').value.trim();
@@ -691,52 +704,87 @@ function setupJoinForm() {
         const interest = document.getElementById('interest').value.trim();
         const experience = document.getElementById('experience').value.trim();
         const transactionId = document.getElementById('transactionId').value.trim();
+        const sendMoneyNumber = document.getElementById('sendMoneyNumber').value.trim();
 
-        if (!firstName || !lastName || !studentId || !department || !email || !phone || !interest || !experience || !transactionId) {
+        // Validate required fields
+        if (!firstName || !lastName || !studentId || !department || !email || !phone || !interest || !transactionId || !sendMoneyNumber) {
             resultDiv.innerHTML = `
                 <div class="error">
                     <i class="fas fa-exclamation-circle"></i>
-                    <p>Please fill in all fields before submitting.</p>
+                    <p>Please fill in all required fields before submitting.</p>
                 </div>
             `;
             resultDiv.style.display = 'block';
             return;
         }
 
-        // Send data to PHP
-        const formData = new URLSearchParams({
-            firstName, lastName, studentId, department, email, phone, interest, experience, transactionId
-        });
-
-        resultDiv.innerHTML = `<div class="loading"><i class="fas fa-spinner"></i><p>Submitting...</p></div>`;
+        // Show loading state
+        resultDiv.innerHTML = `
+            <div class="loading">
+                <i class="fas fa-spinner"></i>
+                <p>Submitting your application...</p>
+            </div>
+        `;
         resultDiv.style.display = 'block';
 
         try {
-            const response = await fetch("backend/join_us.php", {
-                method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: formData
-            });
-            const result = await response.json();
+            // Prepare template parameters
+            const templateParams = {
+                first_name: firstName,
+                last_name: lastName,
+                student_id: studentId,
+                department: department,
+                email: email,
+                phone: phone,
+                interest: interest,
+                experience: experience || 'No previous experience provided',
+                transaction_id: transactionId,
+                send_money_number: sendMoneyNumber,
+                date: new Date().toLocaleDateString(),
+                time: new Date().toLocaleTimeString()
+            };
 
-            if (result.status === "success") {
-                resultDiv.innerHTML = `
-                    <div style="text-align:center; color:var(--accent-color);">
-                        <i class="fas fa-check-circle" style="font-size:3rem; margin-bottom:15px;"></i>
-                        <h3>${result.message}</h3>
-                    </div>`;
-                document.querySelector("#join-us form").reset();
-            } else {
-                resultDiv.innerHTML = `<div class="error"><p>${result.message}</p></div>`;
-            }
-        } catch (err) {
-            resultDiv.innerHTML = `<div class="error"><p>Server error. Please try again.</p></div>`;
+            // Send email using EmailJS
+            const response = await emailjs.send(
+                EMAILJS_SERVICE_ID,
+                EMAILJS_TEMPLATE_ID,
+                templateParams
+            );
+
+            console.log('Email sent successfully:', response);
+
+            // Show success message
+            resultDiv.innerHTML = `
+                <div style="text-align: center; color: var(--accent-color);">
+                    <i class="fas fa-check-circle" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                    <h3>Application Submitted Successfully!</h3>
+                    <p>Thank you, ${firstName}! Your application has been received.</p>
+                    <p>We will review your application and contact you within 2-3 business days.</p>
+                    <p><strong>Transaction ID:</strong> ${transactionId}</p>
+                    <p><strong>Payment Number:</strong> ${sendMoneyNumber}</p>
+                    <p style="margin-top: 15px; font-size: 0.9rem; color: var(--text-color);">
+                        A confirmation email has been sent to the club administration.
+                    </p>
+                </div>
+            `;
+
+            // Reset form
+            document.querySelector('.join-form').reset();
+
+        } catch (error) {
+            console.error('Error sending email:', error);
+            resultDiv.innerHTML = `
+                <div class="error">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Submission Failed</h3>
+                    <p>There was an error submitting your application. Please try again.</p>
+                    <p><small>Error: ${error.message || 'Unknown error'}</small></p>
+                    <p style="margin-top: 10px;">If the problem persists, please contact us directly at diurc@diu.edu.bd</p>
+                </div>
+            `;
         }
     });
 }
-
-
-
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', async () => {
